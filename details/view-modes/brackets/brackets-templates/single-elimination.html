@@ -1,0 +1,41 @@
+<div class="tournament-brackets clearfix" ng-style="{ 'width': (vm.rounds.length*260) }">
+    <div ng-repeat="round in vm.rounds" class="round margin-vertical-30 padding-horizontal-30 padding-bottom-30">
+        <div ng-switch="vm.rounds.length - $index" class="round-header">
+            <h3 ng-switch-when="1" class="margin-bottom-0"> {{ 'Final' | translate }} </h3>
+            <h3 ng-switch-when="2" class="margin-bottom-0"> {{ 'Semi-final' | translate }} </h3>
+            <h3 ng-switch-default class="margin-bottom-0">
+                        {{ 'Round' | translate }} {{ vm.rounds.length - $index  }}
+            </h3>
+        </div>
+
+        <div class="matches" ng-style="{ 'height': vm.rounds[0].length * 94 }">
+            <div ng-repeat="match in round" class="match">
+                <div ng-if="(match.round < vm.rounds.length - 1) " class="brdr-horizontal-pre" ng-class="{'setter-component':((match.groups[1] === vm.currentGroupId) || (match.groups[0] === vm.currentGroupId))}">
+
+                </div>
+                <div class="game-box text-truncate" ng-click="vm.showMatchDetails(match, vm.tournament)" ng-class="{'unknown':(!match.created_at), 'complete':(match.created_at && match.has_series_end), 'running':(match.created_at && !match.has_series_end)}">
+                    <div ng-if="(vm.tournament.policy.max_players_count === 1)" ng-include="'app/tournaments/details/view-modes/brackets/match-templates/solo.html'"></div>
+
+                    <div ng-if="(match.participants[0].team  && match.participants[1].team)" ng-include="'app/tournaments/details/view-modes/brackets/match-templates/team.html'"></div>
+                </div>
+                <div class="brdr-post" ng-if="($index % 2 === 0) && (match.round !== 0)">
+                    <div class="brdr-horizontal inline-block" ng-class="{'setter-component':((match.groups[1] === vm.currentGroupId) && (match.getWinner() === match.groups[1])) || ((match.groups[0] === vm.currentGroupId) &&  (match.getWinner() === match.groups[0]))}">
+
+                    </div>
+                    <div class="brdr-vertical inline-block" ng-style="{ 'height': vm.getHeight(vm.rounds.length, match.round) }" ng-class="{'setter-component':((match.groups[1] === vm.currentGroupId) && (match.getWinner() === match.groups[1])) || ((match.groups[0] === vm.currentGroupId) &&  (match.getWinner() === match.groups[0]))}">
+
+                    </div>
+                </div>
+                <div class="brdr-post-odd" ng-if="($index % 2 !== 0)" ng-style="{ 'top': 56 - vm.getHeight(vm.rounds.length, match.round) }">
+                    <div class="brdr-horizontal inline-block" ng-class="{'setter-component':((match.groups[1] === vm.currentGroupId) && (match.getWinner() === match.groups[1])) || ((match.groups[0] === vm.currentGroupId) &&  (match.getWinner() === match.groups[0]))}">
+
+                    </div>
+                    <div class="brdr-vertical inline-block" ng-style="{ 'height': vm.getHeight(vm.rounds.length, match.round) }" ng-class="{'setter-component':((match.groups[1] === vm.currentGroupId) && (match.getWinner() === match.groups[1])) || ((match.groups[0] === vm.currentGroupId) &&  (match.getWinner() === match.groups[0]))}">
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,103 @@
+@import '../../../styles/mixins';
+@import '../../../../../remark/src/less/vars-color';
+@import './view-modes/brackets/brackets';
+@import './view-modes/current-match/current-match';
+@import './view-modes/general-info/general-info';
+@header-height: 250px;
+
+.tab-pane > div > div {
+    animation-name: fadeIn;
+    animation-duration: 0.35s;
+}
+
+.tournament-body {
+    margin: 0 auto;
+}
+
+.nav-tabs-horizontal {
+  .nav-tabs{
+    li {
+      a {
+        span {
+          font-size: 12px;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
+
+.tournament-details {
+    background: @color-white;
+    position: relative;
+    padding-left: 0 !important;
+
+    & .cover {
+        height: @header-height;
+        margin: 0 auto;
+        min-width: 100%;
+        background-repeat: no-repeat;
+        background-size: 100%;
+    }
+
+    & .page-header {
+        transition: 0.2s;
+        z-index: 0;
+        position: relative;
+        overflow: hidden;
+        height: @header-height;
+        top: 0;
+        min-width: 100%;
+        padding: 50px 100px;
+
+        & h1 {
+            color: @color-white;
+            font-size: 45px;
+        }
+
+        & .page-title-definition {
+            color: @color-white;
+            font-weight: 100;
+        }
+    }
+
+    & .page-content {
+        min-width: 100%;
+        padding: 0;
+        margin-top: -41px;
+        z-index: 99999;
+
+        & .nav-tabs-horizontal {
+            & .nav-tabs {
+                border-bottom: none;
+
+                & li {
+                    min-width: 160px;
+                    text-align: center;
+                }
+
+                & a {
+                    font-weight: 300;
+                    color: @color-white;
+                    margin-right: 0;
+                    background-color: transparent;
+                    text-transform: uppercase;
+                    .border-radius(0);
+                }
+
+                & li.active a,
+                & li:hover a {
+                    color: @color-blue-grey-800;
+                    background-color: @color-white;
+                    border-color: transparent;
+                    background-clip: inherit !important;
+                    .border-radius(0);
+                }
+            }
+
+            & .tab-content {
+                padding: 0 20px;
+            }
+        }
+    }
+}

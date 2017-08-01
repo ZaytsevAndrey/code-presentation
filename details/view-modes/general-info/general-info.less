@@ -1,0 +1,76 @@
+.general-info {
+    .information-stat {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        font-weight: 700;
+    }
+
+    .rules {
+        background-color: #F0F0F0;
+    }
+
+    & .reward {
+        & img.place {
+            width: 43px;
+            float: left;
+        }
+    }
+
+    & .policy {
+        border: 1px solid @color-blue-grey-300;
+        overflow: hidden;
+    }
+
+    & .get-money,
+    & .restrictions {
+        overflow: hidden;
+
+        & .icon {
+            font-size: 45px;
+        }
+
+        & p {
+            margin: 0;
+            font-weight: bold;
+        }
+    }
+
+    & .get-money {
+        border: 1px solid @color-green-600;
+        .border-radius(3px);
+
+        & .icon {
+            color: @color-green-600;
+        }
+    }
+
+    & .restrictions {
+        border: 1px solid @color-red-600;
+        .border-radius(3px);
+
+        & .icon {
+            color: @color-red-600;
+        }
+    }
+
+    ul.tournament-options {
+        margin: 21px 0 0;
+        padding: 0;
+        list-style: none;
+
+        li {
+            margin-bottom: 6px;
+
+            label {
+                font-family: Roboto,sans-serif;
+                width: 45%;
+                color: @color-grey-500;
+
+                & + span {
+                    width: 55%;
+                    color: @color-form-title;
+                }
+            }
+        }
+    }
+}

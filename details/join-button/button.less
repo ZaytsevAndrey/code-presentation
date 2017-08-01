@@ -1,0 +1,116 @@
+.join-button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    min-width: 230px;
+    min-height: 50px;
+
+    .wrc-icon-green:before {
+        width: 20px;
+        height: 15px;
+    }
+
+    & .awaiting-tour-wrap {
+        background-color: black;
+        color: white;
+        padding: 20px;
+    }
+
+    & .amount {
+        color: @color-green-mod;
+        font-size: 14px;
+        font-style: italic;
+        line-height: 36px;
+
+        & > div {
+            text-transform: uppercase;
+        }
+    }
+
+    & .btn-leave {
+        color: @color-white;
+        min-width: 200px;
+        border: 1px solid @color-white;
+        border-radius: 0;
+
+        .register-description {
+            font-size: 14px;
+        }
+
+        &:after {
+            display: none;
+        }
+
+        &.btn-custom {
+            & > :nth-child(2) {
+                transition: 0.2s;
+                font-size: 22px;
+                top: 9px;
+
+                &:before {
+                    color: @color-white;
+                }
+            }
+
+            & > :nth-child(1) {
+                transition: 0.2s;
+                padding-right: 30px;
+            }
+
+            &:before {
+                width: 1%;
+                right: 25px;
+                background: rgba(255, 255, 255, 1);
+            }
+
+            &:hover {
+                &:before {
+                    right: 30px;
+                }
+            }
+        }
+
+        &:hover,
+        :focus {
+            color: @color-white;
+            border-color: @color-white;
+            background: transparent;
+        }
+    }
+
+    & .btn-success {
+        &.btn-custom {
+            background-color: @color-green-mod-card-main;
+            border: none;
+
+            &:before {
+                width: 47%;
+                height: 200%;
+                top: -29px;
+                right: -42px;
+                background: @color-green-mod-card-footer;
+            }
+
+            &:hover:before {
+                right: -32px;
+                background: @color-green-mod-card-footer-hover;
+            }
+        }
+
+        .register-description {
+            line-height: 33px;
+            font-size: 14px;
+
+            & > span {
+                font-size: 14px;
+                padding-right: 20px;
+            }
+        }
+
+        &:after {
+            left: 134px;
+            top: -25px;
+            background-color: rgba(48, 132, 75, 0.3);
+        }
+    }
+}

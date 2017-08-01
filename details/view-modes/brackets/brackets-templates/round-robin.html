@@ -1,0 +1,60 @@
+<div class="round-robin">
+    <div class="team-column inline-block ">
+        <div class="round-desc inline-block text-center form-title">
+            {{'Teams' | translate}}
+        </div>
+        <div class="team-row padding-left-15" ng-repeat="team in vm.teams">
+
+            <div class="team-box inline-block">
+                <div class="team inline-block">
+                    <div class="avatar">
+                        <img ng-src="{{ team.account.steam_avatar_url }} ">
+                    </div>
+                    <div class="team-name text-truncate text-nowrap">
+                        {{team.account.steam_personal_name}}
+                    </div>
+                </div>
+
+                <div class="team-score pull-right inline-block">
+                    <div class="wins">
+                        <div class="font-size-20">
+                            {{team.wins}}
+                        </div>
+                        <div class="font-size-12">
+                            {{"wins" | translate}}
+                        </div>
+                    </div>
+                    <div class="loses">
+                        <div class="font-size-20">
+                            {{ team.loses}}
+                        </div>
+                        <div class="font-size-12">
+                            {{"loses" | translate}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="matches inline-block draggable is-pointer-down">
+        <div class="">
+            <div class="round-desc inline-block form-title" ng-repeat="match in vm.teams[0].matches">
+                {{'Round ' | translate}} {{$index+1}}
+            </div>
+        </div>
+
+        <div class="team-row" ng-repeat="team in vm.teams" ng-style="{ 'width': ((vm.teams.length - 1) * 240) }">
+
+            <div class="match inline-block padding-horizontal-20" ng-repeat="match in team.matches">
+                <div class="game-box text-truncate" ng-click="vm.showMatchDetails(match, vm.tournament)" ng-class="{'unknown':(!match.isPassed() && !match.isRunning()), 'complete':(match.isPassed()), 'running':(match.isRunning())}">
+                    <div ng-if="(vm.tournament.policy.max_players_count === 1)" ng-include="'app/tournaments/details/view-modes/brackets/match-templates/round-robin-solo.html'"></div>
+
+                    <div ng-if="(match.participants[0].team  && match.participants[1].team)" ng-include="'app/tournaments/details/view-modes/brackets/match-templates/round-robin-team.html'"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

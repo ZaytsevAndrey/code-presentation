@@ -1,0 +1,38 @@
+<div class="join-button" tooltip-popup-delay="1000" uib-tooltip="{{ (isParticipant() ? 'Leave the tournament' : 'Participate the tournament') | translate }}">
+    <div ng-if="!isParticipant() && !tournament.isRegistrationAwaiting()" style="height: 100%;">
+        <div ng-click="join()" class="btn btn-block btn-success text-center font-size-20 font-weight-800 btn-custom btn-custom-mod"
+            style="height: 100%; padding: 8px 15px;">
+            <div class="register-description text-center col-lg-8 col-md-8 col-sm-8 col-xs-8 padding-0 text-uppercase pull-left"> {{ 'Register' | translate }} </div>
+            <div class="amount text-center col-lg-4 col-md-4 col-sm-4 col-xs-4 padding-0 pull-left font-weight-800" style="z-index: 1;">
+                <div ng-if="!tournament.getPlayerFee()" class="free-fee"> {{ 'free' | translate }} </div>
+                <div ng-if="tournament.getPlayerFee()" ng-switch="tournament.currency.code">
+                    <div ng-switch-when="WRC" class="wrc-icon-green"> {{ ::tournament.getPlayerFee() }}</div>
+                    <div ng-switch-when="USD"> £{{ ::tournament.getPlayerFee() }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-if="!isParticipant() && tournament.isRegistrationAwaiting()" class="awaiting-tour-wrap">
+        <div class="text-center font-size-20 font-weight-800">
+            <div class="text-uppercase font-size-10 text-center register-starts-desc">
+                {{' registration starts at' | translate}}
+            </div>
+            <div class="text-center registration-date  text-uppercase">
+                <div class="inline-block  ">
+                    {{tournament.getRegistrationStartDate() + ', '}}
+                </div>
+                <div class="inline-block">
+                    {{' ' + tournament.getRegistrationStartTime()}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-if="isParticipant()">
+        <div ng-click="leave()" class="btn btn-outline btn-primary btn-leave btn-custom font-size-20 font-weight-700 padding-vertical-10 height-50">
+            <div class="register-description text-uppercase">
+                {{ 'Leave' | translate }}
+            </div>
+            <i class="icons8-undo"></i>
+        </div>
+    </div>
+</div>

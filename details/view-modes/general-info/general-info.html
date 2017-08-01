@@ -1,0 +1,95 @@
+<div class="general-info vertical-margin-30 padding-30 clearfix">
+    <div class="col-md-6 col-sm-12">
+        <div class="row">
+            <div class="prizes col-md-12">
+                <h2 class="margin-bottom-20 margin-top-0 form-title"> {{ 'Prizes' | translate }} </h2>
+                <div ng-repeat="reward in vm.generalInfo.rewards" class="reward col-xs-4 margin-bottom-20">
+                    <img ng-src="{{'images/tdetails/' +reward.getImgName()+ '.png'}}" class="place" alt="Place">
+                    <p class="font-weight-600 margin-0"> {{ ::reward.title }} </p>
+                    <span ng-switch="vm.tournament.rewardCurrency.code">
+                    <span ng-switch-when="WRC" class="amount wrc-icon-gray">
+                      {{ ::reward.amount }} </span>
+                    <span ng-switch-when="USD" class="amount"> £{{ ::reward.amount }}</span>
+                    <span ng-switch-when="GBP" class="amount"> £{{ ::reward.amount }}</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div ng-if="vm.tournament.description" class="description col-md-12">
+                <h2 class="margin-bottom-20 form-title margin-top-20"> {{ 'Description' | translate }} </h2>
+                <span> {{ ::vm.tournament.description }} </span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-12">
+        <div class="">
+            <h2 class="margin-bottom-20 form-title margin-top-0"> {{ 'Rules' | translate }} </h2>
+
+
+            <div class="rules row">
+                <div class="col-md-6 information-stat">
+                    <div class="text-uppercase font-size-12 font-weight-100">game</div>
+                    <div>{{vm.generalInfo.policy[0].title}}</div>
+                </div>
+
+                <div class="col-md-6 information-stat">
+                    <div class="text-uppercase font-size-12 font-weight-100">registration starts at</div>
+                    <div>{{vm.generalInfo.policy[2].title}}</div>
+                </div>
+
+                <div class="col-md-6 information-stat">
+                    <div class="text-uppercase font-size-12 font-weight-100">type</div>
+                    <div>{{vm.generalInfo.policy[1].title}} {{::vm.tournament.policy.min_players_count}} {{ 'vs' | translate }}
+                        {{::vm.tournament.policy.max_players_count}}
+                    </div>
+                </div>
+
+                <div class="col-md-6 information-stat">
+                    <div class="text-uppercase font-size-12 font-weight-100">amount</div>
+                    <div>{{::vm.tournament.participants_count}} {{' teams' | translate}}</div>
+                </div>
+
+                <div class="col-md-6 information-stat">
+                    <div class="text-uppercase font-size-12 font-weight-100">
+                        mode
+                    </div>
+                    <div ng-switch="vm.tournament.mode">
+                        <div ng-switch-when="1">Single Elimination</div>
+                        <div ng-switch-when="2">Double Elimiation</div>
+                        <div ng-switch-when="3">Round Robin</div>
+                        <div ng-switch-default>...</div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 information-stat">
+                    <div class="text-uppercase font-size-12 font-weight-100">
+                        series
+                    </div>
+                    <div>
+                        Bo{{ ::vm.tournament.policy.regular_series_count }}, {{ 'Final' | translate }}: Bo{{ ::vm.tournament.policy.final_series_count
+                        }}
+                    </div>
+                </div>
+
+                <div class="col-md-6 information-stat">
+                    <div class="text-uppercase font-size-12 font-weight-100">
+                        {{ 'Time to check-in' | translate }}:
+                    </div>
+                    <div ng-if="!vm.tournament.checkin_duration">
+                        {{ 'No' | translate }}
+                    </div>
+                    <div ng-if="vm.tournament.checkin_duration"> {{::vm.tournament.checkin_duration }} mins
+                    </div>
+                </div>
+
+                <div class="col-md-6 information-stat">
+                    <div class="text-uppercase font-size-12 font-weight-100"> {{ 'Password protection' | translate }}: </div>
+                    <div ng-if="!vm.tournament.password"> {{ 'No' | translate }} </div>
+                    <div ng-if="vm.tournament.password"> {{ 'Yes' | translate }} </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

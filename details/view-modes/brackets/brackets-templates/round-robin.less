@@ -1,0 +1,176 @@
+.round-robin {
+  overflow: hidden;
+    .team-column > div:nth-child(2n+0) {
+        background-color: rgba(192,192,192,0.2);
+    }
+
+    .matches > div:nth-child(2n+0) {
+        background-color: rgba(192,192,192,0.2);
+    }
+
+    .round-desc {
+        font-size: 22px;
+        padding: 20px 10px;
+        width: 240px;
+        font-weight: 600;
+    }
+
+    .team-row {
+        height: 100px;
+        width: 240px;
+    }
+
+    .team-column {
+        width: 255px;
+        vertical-align: top;
+        position: relative;
+        z-index: 5;
+        background-color: @color-white;
+    }
+
+    .matches {
+        white-space: nowrap;
+        width: 725px;
+        cursor: move;
+    }
+
+    .team-box {
+        position: relative;
+        height: 100%;
+        vertical-align: top;
+        font-size: 16px;
+        width: 240px;
+        text-align: center;
+        font-weight: 600;
+
+        .team {
+            padding: 10px;
+            width: 100%;
+        }
+
+        .avatar {
+            width: 58px;
+        }
+
+        .team-score {
+            position: absolute;
+            height: 100%;
+            right: 0;
+        }
+
+        .wins {
+            height: 50px;
+            background-color: #e0e0e0;
+            padding: 5px;
+            text-align: center;
+        }
+
+        .loses {
+            height: 50px;
+            background-color: #eeeeee;
+            padding: 5px;
+            text-align: center;
+        }
+    }
+
+    .match {
+        position: relative;
+        padding: 10px;
+    }
+
+    & .game-box-wrapper {
+        width: 100%;
+        height: @game-box-height;
+        padding: 15px 0;
+        position: relative;
+    }
+
+    & .game-box {
+        .transform(skew(-8deg));
+        height: 100%;
+        width: 200px;
+        cursor: pointer;
+        position: relative;
+        transition: 0.2s;
+
+        &:hover {
+            box-shadow: -4px 5px 0 0 rgba(0,0,0,0.3);
+            top: -4px;
+        }
+
+        &.complete {
+            border-left: 4px solid @color-indigo-600;
+        }
+
+        &.unknown {
+            border-left: 4px solid @color-grey-400;
+        }
+
+        &.running {
+            border-left: 4px solid @color-bracket-unknown-match;
+        }
+
+        & .first-team,
+        & .second-team {
+            padding: 8px;
+            position: relative;
+
+            .logo {
+                float: left;
+            }
+
+            .unknown-logo {
+                width: 22px;
+                height: 22px;
+                .border-radius(11px);
+                background-color: @color-grey-500;
+                color: @color-grey-100;
+                float: left;
+                .transform(skew(8deg));
+            }
+
+            .team-name {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 100px;
+
+                &.unknown {
+                    color: @color-grey-500;
+                }
+            }
+
+            & img {
+                width: 20px;
+                .transform(skew(8deg));
+            }
+
+            .team-score {
+                position: absolute;
+                height: 100%;
+                width: 35px;
+                right: 0;
+                padding: 8px;
+                top: 0;
+                text-align: center;
+                color: @color-grey-100;
+            }
+        }
+
+        & .first-team {
+            background-color: @color-grey-300;
+
+            & .team-score {
+                background-color: @color-grey-400;
+            }
+        }
+
+        & .second-team {
+            background-color: @color-grey-200;
+
+            & .team-score {
+                background-color: @color-grey-300;
+            }
+        }
+    }
+}

@@ -1,0 +1,47 @@
+<div ng-if="match.groups[0] === team.group_id" class="first-team">
+    <img ng-src="{{ match.participants[0][0].account.steam_avatar_url }} ">
+
+    <span class="font-style-italic font-weight-bold team-name padding-horizontal-5 ">
+      <i>{{ match.participants[0][0].account.steam_personal_name || 'Unknown'}}</i>
+  </span>
+    <div class="team-score font-weight-bold font-size-16">
+        {{ match.score[0] || 0 }}
+    </div>
+</div>
+
+<div ng-if="match.groups[0] !== team.group_id" class="first-team">
+    <img ng-src="{{ match.participants[1][0].account.steam_avatar_url }} ">
+
+    <span class="font-style-italic font-weight-bold team-name padding-horizontal-5 ">
+      <i>{{ match.participants[1][0].account.steam_personal_name || 'Unknown'}}</i>
+  </span>
+    <div class="team-score font-weight-bold font-size-16">
+        {{ match.score[1] || 0 }}
+    </div>
+</div>
+
+
+
+
+
+<div ng-if="match.groups[0] === team.group_id" class="second-team">
+    <img ng-src="{{ match.participants[1][0].account.steam_avatar_url }} ">
+
+    <span class="font-style-italic font-weight-bold team-name padding-horizontal-5 ">
+      <i>{{ match.participants[1][0].account.steam_personal_name  || 'Unknown' }}</i>
+  </span>
+    <div class="team-score font-weight-bold font-size-16">
+        {{ match.score[1] || 0 }}
+    </div>
+</div>
+
+<div ng-if="match.groups[0] !== team.group_id" class="second-team">
+    <img ng-src="{{ match.participants[0][0].account.steam_avatar_url }} ">
+
+    <span class="font-style-italic font-weight-bold team-name padding-horizontal-5 ">
+      <i>{{ match.participants[0][0].account.steam_personal_name  || 'Unknown' }}</i>
+  </span>
+    <div class="team-score font-weight-bold font-size-16">
+        {{ match.score[0] || 0 }}
+    </div>
+</div>

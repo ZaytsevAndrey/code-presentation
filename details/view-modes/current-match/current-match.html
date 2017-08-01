@@ -1,0 +1,110 @@
+<div class="current-match">
+    <div class="background">
+        <div class="left-side"></div>
+        <div class="vs"> vs </div>
+        <div class="info-label" ng-if="vm.currentMatch.isInvitationPeriod()">
+            <div class="title" translate>Your match is ready!</div>
+            <div class="content">
+                <translate>Enter the game and wait until you receive an invitation to the practice lobby.</translate>
+                <br><br>
+                <translate>You have</translate>
+                &nbsp;
+                <b>
+                  <span countdown-timer
+                      date="vm.currentMatch.getInvitationPeriodEnd()"
+                      callback="vm.fetchCurrentGames"></span>
+                </b> &nbsp;
+                <translate> to accepting. </translate>
+            </div>
+        </div>
+        <div class="info-label" ng-if="vm.currentMatch.isRunning()">
+            <div class="title" translate> Your match is running! </div>
+            <div class="content" translate>
+                If you disconnected, You can join to the game again with the Dota 2 client<br>
+            </div>
+        </div>
+        <div class="info-label" ng-if="vm.currentMatch.isAwaiting()">
+            <div class="title" translate>Tournament is running...</div>
+            <!--
+            <div class="content" translate>
+                There is your last match
+            </div>
+            -->
+        </div>
+        <!-- <button ng-if="vm.currentMatch.isInvitationPeriod()" ng-click="vm.launchDota()" type="button" name="button" class="btn btn-primary btn-enter-dota">
+            <i class="icons8-steam"></i>  {{ 'Enter Game' | translate }}
+        </button> -->
+        <!-- <div class="lobby-credentials font-size-12 grey-500">
+            <div>
+                {{ 'Lobby Name' | translate }}:
+                <b class="blue-grey-800">
+                  {{ vm.accountCurrentMatch.lobby.name }}
+                </b>
+            </div>
+            <div>
+                {{ 'Password' | translate }}:
+                <b class="blue-grey-800">
+                  {{ vm.accountCurrentMatch.lobby.password }}
+                </b>
+            </div>
+            <div>
+                {{ 'Region' | translate }}:
+                <b class="blue-grey-800">
+                 Luxemburg
+               </b>
+            </div>
+        </div> -->
+        <div class="triangle-bottomright"></div>
+        <div class="right-side"></div>
+    </div>
+    <div class="match text-center margin-top-30">
+        <div class="left-gamers">
+            <h2 ng-if="vm.currentMatch.participants[0].team">{{vm.currentMatch.participants[0].name}}</h2>
+            <h2 ng-if="!vm.currentMatch.participants[0].team">{{vm.currentMatch.participants[0][0].account.steam_personal_name}}</h2>
+            <div class="team-side">
+            </div>
+            <div class="team-score the-dire">
+                {{vm.currentMatch.score[0]}}
+            </div>
+
+            <div class="gamers">
+                <div ng-repeat="player in vm.currentMatch.participants[0]">
+                    <div class="gamer" ng-class="{'custom-margin': $index === 3}">
+                        <div data-placement="top" data-toggle="tooltip" aria-hidden="true" data-original-title="Account" class="avatar-section" role="button">
+
+                            <span class="avatar border-ready">
+                    <img ng-src="{{player.account.steam_avatar_url}}" alt="{{player.account.steam_personal_name}}">
+                </span>
+                        </div>
+                        <h5 class="name">{{player.account.steam_personal_name}}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="center"></div>
+        <div class="right-gamers">
+            <h2 ng-if="vm.currentMatch.participants[1].team">{{vm.currentMatch.participants[1].name}}</h2>
+            <h2 ng-if="!vm.currentMatch.participants[1].team">{{vm.currentMatch.participants[1][0].account.steam_personal_name}}</h2>
+            <div class="team-side">
+            </div>
+            <div class="team-score the-radiant">
+                {{vm.currentMatch.score[1]}}
+            </div>
+
+            <div class="gamers">
+                <div ng-repeat="player in vm.currentMatch.participants[1]">
+
+                    <div class="gamer" ng-class="{'custom-margin': $index === 3}">
+                        <div data-placement="top" data-toggle="tooltip" aria-hidden="true" data-original-title="Account" class="avatar-section" role="button">
+
+                            <span class="avatar border-ready">
+                    <img ng-src="{{player.account.steam_avatar_url}}" alt="{{player.account.steam_personal_name}}">
+                </span>
+                        </div>
+                        <h5 class="name">{{player.account.steam_personal_name}}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

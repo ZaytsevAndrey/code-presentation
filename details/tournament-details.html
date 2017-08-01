@@ -1,0 +1,48 @@
+<div class="page tournament-details">
+    <div class="page-header">
+        <div ng-switch="vm.tournament.video_provider" class="video-player">
+            <div ng-switch-when="1" youtube-directive video-id="{{ vm.tournament.video_id }}">
+            </div>
+            <div ng-switch-when="2" twitch-directive is-stream="{{ vm.tournament.video_is_stream }}" video-id="{{ vm.tournament.video_id }}">
+            </div>
+            <div ng-switch-default class="cover" tournament-large-image-url="{{ vm.tournament.banner_url }}">
+            </div>
+        </div>
+        <div class="row hideble">
+            <div class="col-md-12 tournament-title">
+                <h1 class="page-title"> {{::vm.tournament.name}} </h1>
+                <h3 class="page-title-definition"> {{tournament.starts_at ? vm.tournament.calendarStartsAt() : ''}} </h3>
+            </div>
+            <div ng-if="vm.tournament.isNew()" join-button-directive tournament="vm.tournament" class="col-md-3 col-lg-3 col-sm-3 col-xs-3 padding-0 pull-right text-right join-button"></div>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="nav-tabs-horizontal">
+            <ul class="nav nav-tabs" data-plugin="nav-tabs" role="tablist">
+                <li ng-if="vm.currentMatch" ui-sref-active="active">
+                    <a translate ui-sref="root.tournaments.details.currentMatch">
+                        {{ 'Current match' | translate }}
+                    </a>
+                </li>
+                <li ui-sref-active="active" ng-if="(vm.tournament.isStarted() || vm.tournament.isPassed())">
+                    <a translate ui-sref="root.tournaments.details.brackets">
+                      {{ 'Brackets' | translate }}
+                    </a>
+                </li>
+                <li ui-sref-active="active">
+                    <a translate ui-sref="root.tournaments.details.generalInfo">
+                        {{ 'General info' | translate }}
+                    </a>
+                </li>
+                <li ui-sref-active="active">
+                    <a translate ui-sref="root.tournaments.details.participants">
+                        {{ 'Participants' | translate }}
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="tab-content">
+            <ui-view class="full-height-tournament-tab"></ui-view>
+        </div>
+    </div>
+</div>

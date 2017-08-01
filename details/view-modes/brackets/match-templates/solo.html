@@ -1,0 +1,21 @@
+<div class="first-team" ng-mouseenter="vm.setGroupId(match.groups[0])" ng-mouseleave="vm.unsetGroupId()" ng-class="{'setter-component':(match.groups[0] === vm.currentGroupId)}">
+    <img ng-src="{{ match.participants[0][0].account.steam_avatar_url }} ">
+
+    <span class="font-style-italic font-weight-bold team-name padding-horizontal-5 ">
+      <i>{{ match.participants[0][0].account.steam_personal_name || 'Unknown'}}</i>
+  </span>
+    <div class="team-score font-weight-bold font-size-16 " ng-class="{'setter-component':(match.groups[0] === vm.currentGroupId)}">
+        {{ match.score[0] || 0 }}
+    </div>
+</div>
+
+<div class="second-team" ng-mouseenter="vm.setGroupId(match.groups[1])" ng-mouseleave="vm.unsetGroupId()" ng-class="{'setter-component':(match.groups[1] === vm.currentGroupId)}">
+    <img ng-src="{{ match.participants[1][0].account.steam_avatar_url }} ">
+
+    <span class="font-style-italic font-weight-bold team-name padding-horizontal-5 ">
+      <i>{{ match.participants[1][0].account.steam_personal_name  || 'Unknown' }}</i>
+  </span>
+    <div class="team-score font-weight-bold font-size-16 " ng-class="{'setter-component':(match.groups[1] === vm.currentGroupId)}">
+        {{ match.score[1] || 0 }}
+    </div>
+</div>
